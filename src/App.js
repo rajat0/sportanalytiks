@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import FormToExcel from './components/formtoexcel';
 import { useState } from 'react';
@@ -16,7 +16,7 @@ function App() {
     // Convert all form data to a worksheet
     const ws = XLSX.utils.json_to_sheet(formDataList);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
 
     // Generate Excel file and trigger download
     XLSX.writeFile(wb, 'all-form-data.xlsx');

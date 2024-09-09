@@ -24,6 +24,7 @@ const FormToExcel = ({ onSubmit }) => {
         sportTwo: '',
         sportsIdTwo: '',
         eventId: '',
+        run: '',
         jump: '',
         oneLegStanding: '',
         basketBallThrow: '',
@@ -78,6 +79,7 @@ const FormToExcel = ({ onSubmit }) => {
             sportTwo: '',
             sportsIdTwo: '',
             eventId: '',
+            run: '',
             jump: '',
             oneLegStanding: '',
             basketBallThrow: '',
@@ -120,7 +122,11 @@ const FormToExcel = ({ onSubmit }) => {
                             for="grid-zip">
                             Batch
                         </label>
-                        <select id="batch" name="batch" value={formData.batch} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="batch" name="batch" onSelect={(e) => setFormData({
+                            ...formData,
+                            [e.target.name]: e.target.value
+                        })} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a Batch</option>
                             <option value="Batch No.1" >Batch No 1</option>
                             <option value="Batch No.2" >Batch No 2</option>
                         </select>
@@ -338,7 +344,7 @@ const FormToExcel = ({ onSubmit }) => {
                                 <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="grid-zip"
                                     type="text"
-                                    placeholder="09/09/2024"
+                                    placeholder="462026"
                                     name="zip"
                                     value={formData.zip}
                                     onChange={handleChange}
@@ -391,7 +397,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-last-name"
                             type="text"
-                            placeholder="Doe"
+                            placeholder="0010020036"
                             name="mobileNumber"
                             value={formData.mobileNumber}
                             onChange={handleChange}
@@ -409,7 +415,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             id="grid-student-id"
                             type="text"
-                            placeholder="C"
+                            placeholder="CRICKET"
                             name="sportOne"
                             value={formData.sportOne}
                             onChange={handleChange} />
@@ -442,7 +448,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             id="grid-student-id"
                             type="text"
-                            placeholder="01"
+                            placeholder="VOLLEY BALL"
                             name="sportTwo"
                             value={formData.sportTwo}
                             onChange={handleChange} />
@@ -457,7 +463,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-last-name"
                             type="text"
-                            placeholder="Doe"
+                            placeholder="01"
                             name="sportsIdTwo"
                             value={formData.sportsIdTwo}
                             onChange={handleChange}
@@ -476,37 +482,22 @@ const FormToExcel = ({ onSubmit }) => {
                                     500 M Run (Below 12)
                                 </label>
                                 <div className='flex'>
-                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <div className="w-full md:w-full px-3 mb-6 md:mb-0">
                                         <label
                                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                             for="grid-first-name">
-                                            Mins.
+                                            Mins. & Secs.
                                         </label>
                                         <input
                                             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                             id="grid-student-id"
                                             type="text"
-                                            placeholder="01"
-                                            name="runInMInus"
-                                            value={formData.runInMInus}
+                                            placeholder="1.02"
+                                            name="run"
+                                            value={formData.run}
                                             onChange={handleChange} />
                                     </div>
-                                    <div className="w-full md:w-1/2 px-3">
-                                        <label
-                                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                            for="grid-last-name">
-                                            Secs.
-                                        </label>
-                                        <input
-                                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-last-name"
-                                            type="text"
-                                            placeholder="Doe"
-                                            name="runInSecs"
-                                            value={formData.runInSecs}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -539,36 +530,20 @@ const FormToExcel = ({ onSubmit }) => {
                                     1000 M Run (Above 12)
                                 </label>
                                 <div className='flex'>
-                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <div className="w-full md:w-full px-3 mb-6 md:mb-0">
                                         <label
                                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                             for="grid-first-name">
-                                            Mins.
+                                            Mins. & Secs
                                         </label>
                                         <input
                                             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                             id="grid-student-id"
                                             type="text"
-                                            placeholder="01"
-                                            name="runInMInus"
-                                            value={formData.runInMInus}
+                                            placeholder="1.02"
+                                            name="run"
+                                            value={formData.run}
                                             onChange={handleChange} />
-                                    </div>
-                                    <div className="w-full md:w-1/2 px-3">
-                                        <label
-                                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                            for="grid-last-name">
-                                            Secs.
-                                        </label>
-                                        <input
-                                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-last-name"
-                                            type="text"
-                                            placeholder="15"
-                                            name="runInSecs"
-                                            value={formData.runInSecs}
-                                            onChange={handleChange}
-                                        />
                                     </div>
                                 </div>
                             </div>
@@ -610,7 +585,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-password"
                             type="text"
-                            placeholder="John Doe"
+                            placeholder="30"
                             name="oneLegStanding"
                             value={formData.oneLegStanding}
                             onChange={handleChange}
@@ -628,7 +603,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-password"
                             type="text"
-                            placeholder="John Doe"
+                            placeholder="700"
                             name="basketBallThrow"
                             value={formData.basketBallThrow}
                             onChange={handleChange}
@@ -646,7 +621,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-password"
                             type="text"
-                            placeholder="John Doe"
+                            placeholder="50"
                             name="bendForward"
                             value={formData.bendForward}
                             onChange={handleChange}
@@ -664,7 +639,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-password"
                             type="text"
-                            placeholder="John Doe"
+                            placeholder="12"
                             name="sprint"
                             value={formData.sprint}
                             onChange={handleChange}
@@ -682,7 +657,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-password"
                             type="text"
-                            placeholder="John Doe"
+                            placeholder="120"
                             name="vault"
                             value={formData.vault}
                             onChange={handleChange}
@@ -700,7 +675,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             id="grid-student-id"
                             type="text"
-                            placeholder="01"
+                            placeholder="30"
                             name="height"
                             value={formData.height}
                             onChange={handleChange} />
@@ -715,7 +690,7 @@ const FormToExcel = ({ onSubmit }) => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-last-name"
                             type="text"
-                            placeholder="Doe"
+                            placeholder="40"
                             name="weight"
                             value={formData.weight}
                             onChange={handleChange}

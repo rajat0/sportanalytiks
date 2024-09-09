@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as XLSX from 'xlsx';
 
 const FormToExcel = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
